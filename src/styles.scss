@@ -1,1 +1,38 @@
 /* You can add global styles to this file, and also import other style files */
+
+:root {
+    // --background-body: #898585;
+    --background-body: #41b7ee;
+    --background-card: #8ecae6;
+    --background-sidebar: #282222;
+
+    --primary-color: #219ebc;
+    --primary-color-light: #fff;
+    --secondary-color: #023047;
+    --secondary-color-light: #c8c8c8;
+
+    --text-color-light: #fff;
+    --text-color-dark: #000;
+
+    --button-color: #37415a;
+    --button-hover: #102458;
+
+    // --font-family: Arial, sans-serif;
+
+    
+}
+
+html, body {
+    background-color: var(--background-body);
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    // overflow-x: hidden;
+    // overflow-y: scroll;
+    height: 100%;
+    box-sizing: border-box;
+    font-size: 20px;
+
+}
+
+

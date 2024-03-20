@@ -1,0 +1,35 @@
+<mat-card class="loginCard">
+
+    <mat-card-header>
+        <mat-card-title>LOGIN</mat-card-title>
+        <mat-card-subtitle>Admin Dashboard Login</mat-card-subtitle>
+    </mat-card-header>
+
+    <mat-card-actions class="loginFields">
+
+        <mat-form-field appearance="outline">
+            <mat-label>Enter your email</mat-label>
+            <input matInput placeholder="john@example.com" [formControl]="email" required>
+            <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+
+            @if (email.invalid) {
+            <mat-error>{{getErrorMessage()}}</mat-error>
+            }
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+            <mat-label>Enter your password</mat-label>
+            <input matInput placeholder="********" [type]="hide ? 'password' : 'text'" required>
+            <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
+                [attr.aria-pressed]="hide">
+                <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+            </button>
+
+        </mat-form-field>
+
+        <button mat-button>LOGIN</button>
+
+    </mat-card-actions>
+
+
+</mat-card>
