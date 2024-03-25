@@ -1,1 +1,123 @@
-<p>signup works!</p>
+<P>signup</P>
+<div class="container">
+    <div class="card mb-4">
+      <div class="card-header">
+        Sign Up with Reactive
+      </div>
+      <div class="card-body">
+        <form [formGroup]="formGroup1" (ngSubmit)="addNewUser()" #formsignup="ngForm">
+          <div class="form-group row mb-2">
+            <label for="fullName" class="col-md-2 col-form-label">full Name</label>
+            <div class="col-md-8">
+  
+                
+              <input type="text" formControlName="fullName" class="form-control" id="fullName"
+                placeholder="full Name  (required)"  name='fullName'
+                [ngClass]="{'is-invalid':(fullName?.touched||fullName?.dirty)&&fullName?.invalid}"
+                [(ngModel)]="newuser.name">
+              <span class="invalid-feedback">
+                @if(fullName?.errors?.['required']){
+                <span>Full Name is required</span>
+                }
+                @if(fullName?.errors?.['minlength']){
+                <span>Full Name must be at least 5 letters</span>
+                }
+  
+              </span>
+            </div>
+          </div>
+  
+          <div class="form-group row mb-2">
+            <label class="col-md-2 col-form-label" for="emailId">Email</label>
+            <div class="col-md-8">
+              <input class="form-control" id="emailId" type="email" placeholder="Email (required)" name="email"
+                formControlName="email" 
+                [ngClass]="{'is-invalid':(email?.touched||email?.dirty)&&email?.invalid}"
+                [(ngModel)]="newuser.email"/>
+  
+                <span class="invalid-feedback">
+                  @if(email?.errors?.['required']){
+                  <span>email is required</span>
+                  }
+                  @if(email?.errors?.['email']){
+                    <span>email must be like as Examplegmail.com</span>
+                    }
+                </span>
+            </div>
+          </div>
+       
+          <div class="form-group row mb-2">
+            <label class="col-md-2 col-form-label" for="passwordId">password</label>
+            <div class="col-md-8">
+              <input class="form-control" id="passwordId" type="text" placeholder="password (required)" name="password"
+                formControlName="password"
+                [ngClass]="{'is-invalid':(password?.touched||password?.dirty)&&password?.invalid}" 
+                [(ngModel)]="newuser.password"/>
+  
+                <span class="invalid-feedback">
+                  @if(password?.errors?.['required']){
+                  <span>password is required</span>
+                  }
+                  @if(password?.errors?.['minlength']){
+                    <span>password must be at least 8 character</span>
+                    }
+                </span>
+            </div>
+          </div>
+
+         
+
+          Mobile Number:
+          <div formArrayName="mobile">
+           <div formControlName="$index" >
+                @for(control of mobile.controls;track $index){
+                    <div [formGroupName]="$index">
+                        <input class="form-control" id="mobileId" type="number" placeholder="mobile number (required)" 
+                name="mobile" formControlName="phone" [(ngModel)]="newuser.phone_number">
+                <button class="btn btn-danger" (click)="removeMobile($index)">Remove</button>
+                    </div>
+
+                }
+    
+              </div>
+              <button type="button" class="btn btn-primary" (click)="addMobile()">Add Mobile Number</button>
+          </div>  
+
+
+
+  
+          Address:
+          <div formArrayName="address">
+            @for(control of address.controls;track $index){
+            <div [formGroupName]="$index">
+              city name :
+              <input type="text" formControlName="city" [(ngModel)]="newuser.address">
+              postal code :
+              <input type="text" formControlName="postalCode">
+
+              street:
+              <input type="text" formControlName="street">
+  
+              <button class="btn btn-danger" (click)="removeAddress($index)">Remove</button>
+            </div>
+          }
+  
+          </div>
+          <button type="button" class="btn btn-primary" (click)="addAddress()">Add Address</button>
+  
+          <br>
+          <button type="submit" class="btn btn-success" > >Submit</button>
+        </form>
+  
+  
+      </div>
+    </div>
+  </div>
+  
+  
+  <h2>{{formGroup1.value|json}}</h2>
+
+  <div>
+    <button (click)="loginFunc()" [hidden]="isuser">login</button>
+    <button (click)="logoutFunc()" [hidden]="!isuser">logout</button>
+  </div>
