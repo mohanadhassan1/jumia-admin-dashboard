@@ -7,6 +7,7 @@ import { SidebarComponent } from "./components/sidebar/sidebar.component";
 import {MatGridListModule} from '@angular/material/grid-list';
 import { OrdersComponent } from "./components/orders/orders.component";
 import {MatSidenavModule} from '@angular/material/sidenav';
+import { ManageProductsComponent } from './components/manage-products/manage-products.component';
 
 
 
@@ -16,7 +17,7 @@ import {MatSidenavModule} from '@angular/material/sidenav';
     templateUrl: './app.component.html',
     styleUrl: './app.component.scss',
     
-    imports: [MatSidenavModule, LoginComponent, FormsModule, ReactiveFormsModule, SidebarComponent, MatGridListModule,RouterOutlet,RouterModule]
+    imports: [MatSidenavModule, LoginComponent, FormsModule, ReactiveFormsModule, SidebarComponent, MatGridListModule,RouterOutlet,RouterModule, ManageProductsComponent]
 })
 export class AppComponent {
   title = 'jumia-admin-dashboard';
