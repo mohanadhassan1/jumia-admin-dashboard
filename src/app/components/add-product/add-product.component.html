@@ -1,0 +1,144 @@
+<div class="min-h-screen p-6 bg-gray-100 flex items-center justify-center">
+  <div class="container max-w-screen-lg mx-auto">
+    <div>
+      <h2 class="font-semibold text-xl text-gray-600">Product Details Form</h2>
+      <p class="text-gray-500 mb-6">
+        Please fill out the following product details.
+      </p>
+
+      <div class="bg-white rounded shadow-lg p-4 px-4 md:p-8 mb-6">
+        <div class="grid gap-4 gap-y-2 text-sm grid-cols-1 lg:grid-cols-3">
+          <div class="text-gray-600">
+            <p class="font-medium text-lg">Product Details</p>
+            <p>Please fill out all the fields.</p>
+          </div>
+
+          <form
+            class="lg:col-span-3"
+            (submit)="submitForm()"
+            [formGroup]="addProductForm"
+          >
+            <div class="grid gap-4 gap-y-2 text-sm grid-cols-1 md:grid-cols-1">
+              <div>
+                <label for="name">Product Name</label>
+                <input
+                  type="text"
+                  formControlName="name"
+                  id="name"
+                  class="h-10 border mt-1 rounded px-4 w-full bg-gray-50"
+                  value=""
+                  placeholder="Enter your product name"
+                  required
+                />
+              </div>
+
+              <div>
+                <label for="description">Description</label>
+                <textarea
+                  formControlName="description"
+                  id="description"
+                  class="border mt-1 rounded px-4 w-full bg-gray-50"
+                  rows="4"
+                  placeholder="A few words about this product."
+                  required
+                ></textarea>
+              </div>
+
+              <div class="md:flex md:space-x-4">
+                <div class="md:w-1/2">
+                  <label for="price">Price</label>
+                  <input
+                    type="number"
+                    formControlName="price"
+                    id="price"
+                    class="h-10 border mt-1 rounded px-4 w-full bg-gray-50"
+                    value=""
+                    placeholder="Enter the price of this product"
+                    step="0.01"
+                    required
+                  />
+                </div>
+
+                <div class="md:w-1/2">
+                  <label for="quantity_in_stock">Quantity in Stock</label>
+                  <input
+                    type="number"
+                    formControlName="quantity_in_stock"
+                    id="quantity_in_stock"
+                    class="h-10 border mt-1 rounded px-4 w-full bg-gray-50"
+                    value=""
+                    placeholder="Add quantity of this product"
+                    required
+                  />
+                </div>
+              </div>
+
+              <div>
+                <label for="brand">Product Brand</label>
+                <input
+                  type="text"
+                  formControlName="brand"
+                  id="brand"
+                  class="h-10 border mt-1 rounded px-4 w-full bg-gray-50"
+                  value=""
+                  placeholder="Enter your product brand"
+                  required
+                />
+              </div>
+              <div>
+                <label for="vendor">vendorId</label>
+                <input
+                  type="text"
+                  formControlName="vendor_id"
+                  id="vendor"
+                  class="h-10 border mt-1 rounded px-4 w-full bg-gray-50"
+                  value="603f4f07d53fc06612fccb9b"
+                  placeholder="Enter your product brand"
+                  required
+                />
+              </div>
+
+              <div>
+                <label for="subcategory">Subcategory Name</label>
+                <select
+                  formControlName="subcategory_id"
+                  id="subcategory"
+                  class="h-10 border mt-1 rounded px-4 w-full bg-gray-50"
+                  required
+                >
+                  <option value="">Select Subcategory</option>
+                  @for (subcategory of subcategories; track subcategory._id) {
+                  <option [value]="subcategory._id">
+                    {{ subcategory.name }}
+                  </option>
+                  }
+                </select>
+              </div>
+              <div>
+                <label for="images">Images (URLs separated by commas)</label>
+                <textarea
+                  formControlName="images"
+                  id="images"
+                  class="border mt-1 rounded px-4 w-full bg-gray-50"
+                  rows="4"
+                  required
+                  placeholder="Add images (URLs separated by commas)"
+                ></textarea>
+              </div>
+            </div>
+            <div class="md:col-span-5 text-right">
+              <div class="inline-flex items-end">
+                <button
+                  type="submit"
+                  class="bg-orange-500 hover:bg-orange-700 text-white font-bold py-2 px-4 rounded mt-3"
+                >
+                  Submit
+                </button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

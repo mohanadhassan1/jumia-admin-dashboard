@@ -1,3 +1,4 @@
+// product-management.component.ts
 import { AfterViewInit, Component, ViewChild } from '@angular/core';
 import { MatFormField } from '@angular/material/form-field';
 import {MatTableDataSource, MatTableModule} from '@angular/material/table';
@@ -5,6 +6,8 @@ import {MatInputModule} from '@angular/material/input';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatChipsModule} from '@angular/material/chips';
 import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
+
+
 
 export interface PeriodicElement {
   name: string;
@@ -28,17 +31,16 @@ const ELEMENT_DATA: PeriodicElement[] = [
 ];
 
 
-
 @Component({
-  selector: 'app-manage-products',
+  selector: 'app-mngprd',
   standalone: true,
   imports: [MatFormField,MatTableModule,MatFormFieldModule, MatInputModule, MatTableModule, MatChipsModule, MatPaginatorModule],
-  templateUrl: './manage-products.component.html',
-  styleUrl: './manage-products.component.scss'
+  templateUrl: './mngprd.component.html',
+  styleUrls: ['./mngprd.component.scss']
 })
 
 
-export class ManageProductsComponent implements AfterViewInit  {
+export class MngprdComponent implements AfterViewInit {
 
   displayedColumns: string[] = ['position', 'name', 'weight', 'symbol'];
   dataSource = new MatTableDataSource(ELEMENT_DATA);
@@ -62,4 +64,5 @@ export class ManageProductsComponent implements AfterViewInit  {
 
 
 }
+
 
