@@ -1,0 +1,156 @@
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0%;
+}
+header {
+    color: orange;
+    display: flex;
+    align-items: center;
+    padding: 20px;
+    align-content: center;
+    height: auto;
+    font-size: 20px;
+}
+
+header img {
+    width: 20%;
+    height: 50px ;
+}
+header h2{
+margin-bottom: 0px ;  
+  padding: 10px;
+}
+.item{
+    width: 90%;
+    border-radius: 10px; /* Adjust border radius as needed */
+    margin: auto; 
+    font-size: 20px;
+    display: flex;
+    align-items: center;
+}
+.mat-icon{
+    font-size: 30px;
+    margin-right: 10px;
+    width: fit-content;
+    color: #666;
+}
+.item:hover {
+    background-color: #f0f0f0;
+    cursor: pointer;
+}
+.promotion {
+    display: flex;
+    justify-content: space-between;
+}
+
+  .example-headers-align .mat-expansion-panel-header-description {
+    justify-content: space-between;
+    align-items: center;
+  }
+  .example-headers-align .mat-expansion-panel-header{
+    margin: 0px;
+    margin: auto;
+    font-size: 15px;
+    font-weight: normal;
+    padding: 0px 16px;
+    color:#666
+  }
+  
+  .example-headers-align .mat-mdc-form-field + .mat-mdc-form-field {
+    margin-left: 8px;
+  }
+  .example-headers-align .mat-expansion-panel{
+    border: none;
+    box-shadow: none;
+    border-radius: none;
+
+  }
+  .top ,
+  .bottom{
+    max-height: 40vh;
+   min-height: fit-content;
+    overflow-y: auto;
+  }
+  .brand-img{
+    width:50px;
+    height: 50px;
+    border-radius: 50%;
+    margin-right: 20px;
+  }
+  .brand{
+    height: fit-content;
+    display: flex;
+    align-items: center;
+    font-weight: normal;
+    border-radius: 10px;
+    margin: 0px;
+  }
+  .brand span{
+    font-size: 20px;
+    font-weight: normal;
+  }
+  .accordion-container {
+    max-height: 300px; /* Adjust the max height as needed */
+    overflow-y: auto;
+    margin-bottom: 20px; /* Optional: Add space between accordion containers */
+  }
+.main-container{
+    max-height: 100vh; /* Adjust the max height of the main container */
+    overflow: hidden; 
+}
+  /* CSS */
+/* Hide the default scrollbar */
+::-webkit-scrollbar {
+    width: 10px; /* Width of the scrollbar */
+  }
+  
+  /* Track */
+  ::-webkit-scrollbar-track {
+    background: #f1f1f1; /* Color of the scrollbar track */
+  }
+  
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: #aaa; /* Color of the scrollbar handle */
+  }
+  
+//   /* Handle on hover */
+//   ::-webkit-scrollbar-thumb:hover {
+//     background: #555; /* Color of the scrollbar handle on hover */
+//   }
+
+  .shops-head{
+    background-color: bisque;
+    width: 90%;
+    margin: auto;
+    padding: 20px 10px;
+    border-radius: 10px;
+    font-size: 20px;
+    color: orange;
+    display: flex;
+    // justify-content: space-between;
+    align-items: center;
+
+  }
+ .shops-head .shop-icon{
+    color: orange;
+    margin: 0px;
+    padding: 0px;
+    width: fit-content;
+    display: inline;
+  }
+  a{
+    text-decoration: none;
+  }
+  .email{
+    color: #aaa;
+  }
+  .new{
+   background-color: #ecfdf3;
+    color: #027a48;
+    padding: 5px 10px;
+    border-radius: 10px;
+    font-size: 12px;
+    font-weight: bold;
+  }

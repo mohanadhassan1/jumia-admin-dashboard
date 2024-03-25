@@ -1,0 +1,144 @@
+<div class="main-container">
+    <header>
+        <img src="https://vendorcenter.jumia.com/assets/images/vendor-center-symbol.svg">
+        <h2><b>VENDOR</b> CENTER</h2>
+    </header>
+    <div class="accordion-container">
+
+        <mat-accordion class="example-headers-align top " multi>
+            <mat-list role="list" class="scrollable-list">
+                <a [routerLink]="['/orders']" routerLinkActive="router-link-active" >
+
+                <mat-list-item role="listitem" class="item">
+
+                    <mat-icon>receipt_long</mat-icon> Orders</mat-list-item>
+                </a>
+                <mat-expansion-panel>
+                    <mat-expansion-panel-header class="item">
+                        <mat-panel-title class="mat-panel">
+                            <!-- <mat-list-item role="listitem" class="item"> Products</mat-list-item> -->
+                            <mat-icon> list_alt</mat-icon> products
+                        </mat-panel-title>
+                    </mat-expansion-panel-header>
+
+                    <div>
+                        <a [routerLink]="['/addproduct']" routerLinkActive="router-link-active" >
+
+                        <mat-list-item role="listitem" class="item">
+                            Manage Product
+                        </mat-list-item>
+                        </a>
+                        <a [routerLink]="['/addproduct']" routerLinkActive="router-link-active" >
+
+                        <mat-list-item role="listitem" class="item">
+                            add Product
+                        </mat-list-item>
+                        </a>
+
+                        <mat-expansion-panel>
+                            <mat-expansion-panel-header>
+                                <mat-panel-title>
+                                    <mat-list-item role="listitem" class="item"> FulFilment By Jumia</mat-list-item>
+                                </mat-panel-title>
+                            </mat-expansion-panel-header>
+                            <section>
+                                <a [routerLink]="['/addproduct']" routerLinkActive="router-link-active" >
+
+                                <mat-list-item role="listitem" class="item">
+                                    ConsignMents By Orders
+                                </mat-list-item>
+                                </a>
+                                <a [routerLink]="['/addproduct']" routerLinkActive="router-link-active" >
+
+                                <mat-list-item role="listitem" class="item">
+                                    Create ConsignMents
+                                </mat-list-item>
+                                </a>
+                                <a [routerLink]="['/addproduct']" routerLinkActive="router-link-active" >
+
+                                <mat-list-item role="listitem" class="item">
+                                    FBJ Inventory
+                                </mat-list-item>
+                                </a>
+                            </section>
+                        </mat-expansion-panel>
+
+                    </div>
+
+                </mat-expansion-panel>
+                <a [routerLink]="['/addproduct']" routerLinkActive="router-link-active" >
+
+                <mat-list-item role="listitem" class="item">
+                    <section class="promotion">
+                        <span><mat-icon>loyalty</mat-icon> Promotions</span>
+                        <span class="new">NEW</span>
+
+                    </section>
+                </mat-list-item>
+                </a>
+                <a [routerLink]="['/addproduct']" routerLinkActive="router-link-active" >
+
+                <mat-list-item role="listitem" class="item"> <mat-icon >campaign</mat-icon>Advertise your
+                    producta</mat-list-item>
+                    </a>
+                    <a [routerLink]="['/addproduct']" routerLinkActive="router-link-active" >
+
+                <mat-list-item role="listitem" class="item"><mat-icon >analytics</mat-icon> Account Statements</mat-list-item>
+                     </a>
+
+            </mat-list>
+        </mat-accordion>
+    </div>
+    <!-- chose shops -->
+    <div class="accordion-container">
+
+        <mat-accordion class="example-headers-align bottom" multi>
+            <span class="shops-head">
+                <mat-icon class="shop-icon">storefont</mat-icon>Choose Shops
+                <!-- <span>Choose Shops</span>  -->
+            </span>
+            <mat-list role="list">
+                <mat-expansion-panel>
+                    <mat-expansion-panel-header class="brand">
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ7szmO6OmPBU9ep7tV2BhvOVl73rFfUTIKvg&s"
+                            alt="" class="brand-img">
+                        <div>
+                            <span>Eman fashion</span>
+                            <p class="email"> email34gmail.com</p>
+                        </div>
+                    </mat-expansion-panel-header>
+
+                    <div>
+                        <a [routerLink]="['/addproduct']" routerLinkActive="router-link-active" >
+
+                        <mat-list-item role="listitem" class="item">
+                            Give us your feedback!
+                        </mat-list-item>
+                        </a>
+                        <a [routerLink]="['/addproduct']" routerLinkActive="router-link-active" >
+
+                        <mat-list-item role="listitem" class="item">
+                            Settings
+                        </mat-list-item>
+                        </a>
+                        <a [routerLink]="['/addproduct']" routerLinkActive="router-link-active" >
+
+                        <mat-list-item role="listitem" class="item">
+                            Profile
+                        </mat-list-item>
+                        </a>
+
+                        <a [routerLink]="['/addproduct']" routerLinkActive="router-link-active" >
+
+                        <mat-list-item role="listitem" class="item">
+                            LogOut
+                        </mat-list-item>
+                        </a>
+                    </div>
+
+                </mat-expansion-panel>
+
+            </mat-list>
+        </mat-accordion>
+    </div>
+</div>
