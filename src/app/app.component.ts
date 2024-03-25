@@ -8,6 +8,7 @@ import {MatGridListModule} from '@angular/material/grid-list';
 import { OrdersComponent } from "./components/orders/orders.component";
 import {MatSidenavModule} from '@angular/material/sidenav';
 import { BrowserModule } from '@angular/platform-browser';
+import { ManageProductsComponent } from './components/manage-products/manage-products.component';
 
 
 
@@ -20,7 +21,7 @@ import { BrowserModule } from '@angular/platform-browser';
     
     imports: [ MatSidenavModule, LoginComponent, FormsModule, ReactiveFormsModule, SidebarComponent, MatGridListModule,RouterOutlet,RouterModule,SignupComponent,
       BrowserModule,
-      ReactiveFormsModule]
+      ReactiveFormsModule,ManageProductsComponent]
 })
 export class AppComponent {
   title = 'jumia-admin-dashboard';
