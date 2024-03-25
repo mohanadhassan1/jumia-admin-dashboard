@@ -8,12 +8,12 @@ import { AddProductComponent } from './components/add-product/add-product.compon
 // import { AddproductComponent } from './components/addproduct/addproduct.component';
 
 export const routes: Routes = [
-    {path: '', component: AddproductComponent},
+    {path: '', component: AddProductComponent},
     {path: 'orders', component: OrdersComponent},
     
     // {path: 'signup', component: SignupComponent},
     {path: 'manageproducts', component: ManageProductsComponent},
     
-    {path: '**', component: AddproductComponent},
+    {path: '**', component: AddProductComponent},
 
 ];
