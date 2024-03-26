@@ -1,105 +1,122 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 import { CommonModule } from '@angular/common';
 import {  FormArray, FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators} from '@angular/forms';
 import { Ivendor } from '../../models/ivendor';
 import { VendorserviceService } from '../../services/vendorservice.service';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatInputModule} from '@angular/material/input';
+import { MatIconModule } from '@angular/material/icon';
+import {merge} from 'rxjs';
+import {takeUntilDestroyed} from '@angular/core/rxjs-interop';
+import {MatCheckboxModule} from '@angular/material/checkbox';
+import { RouterLink } from '@angular/router';
+
+
+
+
+
 
 
 
 @Component({
   selector: 'app-signup',
   standalone: true,
-  imports: [ReactiveFormsModule,CommonModule],
+  imports: [ReactiveFormsModule,CommonModule,MatFormFieldModule,MatInputModule,
+    MatIconModule,   
+     MatCheckboxModule,
+  RouterLink],
   templateUrl: './signup.component.html',
   styleUrl: './signup.component.scss'
 })
-export class SignupComponent {
+export class SignupComponent implements OnInit{
   
-  formGroup1:FormGroup;
-  isuser:boolean=true;
-  newuser:Ivendor={} as Ivendor
-
-  constructor(private formbuilder:FormBuilder,private userAuth:VendorserviceService,
-    ){
-    this.isuser=this.userAuth.isUserLogged
-    this.formGroup1=this.formbuilder.group({
-      fullName:['',[Validators.required,Validators.minLength(5)]],
-      email:['',[Validators.required,Validators.email]],
-      password:['',[Validators.required,Validators.minLength(6)]],
-      mobile:this.formbuilder.array([]),
-      address:this.formbuilder.array([])
-
-    })
-  }
-  get fullName(){
-    return this.formGroup1.get('fullName');
-  }
-  get email(){
-    return this.formGroup1.get('email');
-  }
-  get mobile(){
-    return this.formGroup1.get('mobile') as FormArray;
-  }
-  get password(){
-    return this.formGroup1.get('password');
-  }
   
-  get address(){
-    return this.formGroup1.get('address') as FormArray;
+  nameErrorMessage = '';
+  emailErrorMessage=';'
+  passwordErrorMessage='';
 
-  }
+  newvendor:Ivendor={} as Ivendor
+  
+  hideRequiredControl = new FormControl(false);
+  hide = true;
+  vendorForm!: FormGroup ;
+  email!: FormControl;
+  name!: FormControl;
+  password!: FormControl;
+
 
   
-  newAddress():FormGroup{
-    return this.formbuilder.group({
-      city:'',
-      postalCode:'',
-      street:''
-    })
-  }
-  newMobile():FormGroup{
-    return this.formbuilder.group({
-      phone:'',
-      
-    })
-  }
-  addAddress(){
-    this.address.push(this.newAddress())
-  }
-  addMobile(){
-    
-this.mobile.push(this.newMobile())
-  }
-  removeAddress(i:number){
-
-    this.address.removeAt(i);
-
-  }
-  removeMobile(i:number){
-    this.mobile.removeAt(i)
-  }
-
-  loginFunc(){
-    this.userAuth.login("asdfgh","345678")
-    this.isuser=this.userAuth.isUserLogged
+  constructor(private formbuilder:FormBuilder,private vendorAuth:VendorserviceService,) {}
+   ngOnInit(): void {
+    this.vendorForm=this.formbuilder.group({
+      name:['',[Validators.required,Validators.minLength(5)]],
+        email:['',[Validators.required,Validators.email]],
+        password:['',[Validators.required,Validators.minLength(6)]],
+        phone_number:['',[Validators.required,Validators.minLength(9)]],
+        address:['',[Validators.required,Validators.minLength(6)]]
+     })
+    this.email = this.vendorForm.get('email') as FormControl;
+    this.name=this.vendorForm.get('name') as FormControl
+    this.password=this.vendorForm.get('password') as FormControl
 
 
+    merge(this.email.statusChanges, this.email.valueChanges)
+      .pipe(takeUntilDestroyed())
+      .subscribe(() => this.updateErrorMessage());
+   }
+  
+  
+  
+
+  updateErrorMessage() {
+  
+  if (this.name.hasError('required')) {
+    this.nameErrorMessage = 'This field is required';
+  } else if (this.name.hasError('minlength')) {
+    const requiredLength = this.name.errors?.['minlength']?.requiredLength;
+    this.nameErrorMessage = `Minimum length is ${requiredLength}`;
+  } else {
+    this.nameErrorMessage = '';
   }
-  logoutFunc(){
-    this.userAuth.logout()
-    this.isuser=this.userAuth.isUserLogged
+
+  if (this.email.hasError('required')) {
+    this.emailErrorMessage = 'This field is required';
+  } else if (this.email.hasError('email')) {
+    this.emailErrorMessage = 'Not a valid email';
+  } else {
+    this.emailErrorMessage = '';
   }
-  addNewUser(){
-    this.userAuth.adduser(this.newuser).subscribe({
+
+  if (this.password.hasError('required')) {
+    this.passwordErrorMessage = 'This field is required';
+  } else if (this.password.hasError('minlength')) {
+    const requiredLength = this.password.errors?.['minlength'].requiredLength;
+    this.passwordErrorMessage = `Minimum length is ${requiredLength}`;
+  } else if (this.password.hasError('maxlength')) {
+    const maxLength = this.password.errors?.['maxlength'].requiredLength;
+    this.passwordErrorMessage = `Maximum length is ${maxLength}`;
+  } else {
+    this.passwordErrorMessage = '';
+  }
+  }
+  addNewVendor(){
+    console.log('Form values:', JSON.stringify(this.vendorForm.value));
+
+    this.vendorAuth.addVendor(this.vendorForm.value).subscribe({
       next:(data)=>{
         console.log(data)
+        alert("successful")
        
       },
     error:(err)=>{
       console.log(err)
+      alert("errror")
     }
     })
 
+
   }
+ 
+  
 }

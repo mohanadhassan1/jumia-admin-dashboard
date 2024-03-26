@@ -20,7 +20,7 @@ import { ManageProductsComponent } from './components/manage-products/manage-pro
     styleUrl: './app.component.scss',
     
     imports: [ MatSidenavModule, LoginComponent, FormsModule, ReactiveFormsModule, SidebarComponent, MatGridListModule,RouterOutlet,RouterModule,SignupComponent,
-      BrowserModule,
+      
       ReactiveFormsModule,ManageProductsComponent]
 })
 export class AppComponent {

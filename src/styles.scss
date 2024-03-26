@@ -39,5 +39,8 @@ html, body {
     font-size: 20px;
 
 }
+*, ::before, ::after {
+    border-style: none;
+  }
 
 

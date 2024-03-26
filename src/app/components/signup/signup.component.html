@@ -1,123 +1,107 @@
-<P>signup</P>
-<div class="container">
-    <div class="card mb-4">
-      <div class="card-header">
-        Sign Up with Reactive
-      </div>
-      <div class="card-body">
-        <form [formGroup]="formGroup1" (ngSubmit)="addNewUser()" #formsignup="ngForm">
-          <div class="form-group row mb-2">
-            <label for="fullName" class="col-md-2 col-form-label">full Name</label>
-            <div class="col-md-8">
-  
-                
-              <input type="text" formControlName="fullName" class="form-control" id="fullName"
-                placeholder="full Name  (required)"  name='fullName'
-                [ngClass]="{'is-invalid':(fullName?.touched||fullName?.dirty)&&fullName?.invalid}"
-                [(ngModel)]="newuser.name">
-              <span class="invalid-feedback">
-                @if(fullName?.errors?.['required']){
-                <span>Full Name is required</span>
-                }
-                @if(fullName?.errors?.['minlength']){
-                <span>Full Name must be at least 5 letters</span>
-                }
-  
-              </span>
+<div class="min-w-screen min-h-screen bg-gray-100 flex items-center justify-center px-5 py-5">
+    <div class="bg-white text-gray-500 rounded-3xl shadow-xl w-full overflow-hidden"
+        style="max-width:1000px;max-height:90vh">
+        <div class="md:flex w-full">
+            <div class="hidden md:block w-1/2 bg-orange-500 py-10 px-10 d-flex align-middle">
+                <img src="https://vendorcenter.jumia.com/assets/images/signup-background.svg"
+                    class="items-center h-full">
             </div>
-          </div>
-  
-          <div class="form-group row mb-2">
-            <label class="col-md-2 col-form-label" for="emailId">Email</label>
-            <div class="col-md-8">
-              <input class="form-control" id="emailId" type="email" placeholder="Email (required)" name="email"
-                formControlName="email" 
-                [ngClass]="{'is-invalid':(email?.touched||email?.dirty)&&email?.invalid}"
-                [(ngModel)]="newuser.email"/>
-  
-                <span class="invalid-feedback">
-                  @if(email?.errors?.['required']){
-                  <span>email is required</span>
-                  }
-                  @if(email?.errors?.['email']){
-                    <span>email must be like as Examplegmail.com</span>
-                    }
-                </span>
-            </div>
-          </div>
-       
-          <div class="form-group row mb-2">
-            <label class="col-md-2 col-form-label" for="passwordId">password</label>
-            <div class="col-md-8">
-              <input class="form-control" id="passwordId" type="text" placeholder="password (required)" name="password"
-                formControlName="password"
-                [ngClass]="{'is-invalid':(password?.touched||password?.dirty)&&password?.invalid}" 
-                [(ngModel)]="newuser.password"/>
-  
-                <span class="invalid-feedback">
-                  @if(password?.errors?.['required']){
-                  <span>password is required</span>
-                  }
-                  @if(password?.errors?.['minlength']){
-                    <span>password must be at least 8 character</span>
-                    }
-                </span>
-            </div>
-          </div>
-
-         
-
-          Mobile Number:
-          <div formArrayName="mobile">
-           <div formControlName="$index" >
-                @for(control of mobile.controls;track $index){
-                    <div [formGroupName]="$index">
-                        <input class="form-control" id="mobileId" type="number" placeholder="mobile number (required)" 
-                name="mobile" formControlName="phone" [(ngModel)]="newuser.phone_number">
-                <button class="btn btn-danger" (click)="removeMobile($index)">Remove</button>
+            <form class="w-full md:w-1/2 py-3  px-5 md:px-10" [formGroup]="vendorForm" (ngSubmit)="addNewVendor()" >
+                <div class="text-center mb-2">
+                    <h1 class="font-bold text-3xl  text-gray-900 inline" >Be Seller ON 
+                        <span
+                            class="text-orange-400 animate-bounce flex items-center justify-center">
+                            JUMIA 
+                            <img
+                            class="h-5 w-5 inline mx-1"
+                            src="https://companieslogo.com/img/orig/JMIA-356fb835.png?t=1659936321" alt=""> </span> </h1>
+                            
+                </div>
+                <div>
+                    <div class="flex -mx-3">
+                        <div class="w-full px-3 mb-2">
+                            <mat-form-field class="custom-mat-form-field" appearance="outline">
+                                <mat-label class="label text-orange-500">Name</mat-label>
+                                <input matInput placeholder="Enter your Name" formControlName="name"  class="out custom-mat-input" type="text"
+                               (blur)="updateErrorMessage()" required>
+                               
+                                @if (name.invalid) {
+                                <mat-error>{{ nameErrorMessage}}</mat-error>
+                                }
+                               
+                               
+                               
+                            </mat-form-field>
+                        </div>
+                    </div>
+                    <div class="flex -mx-3">
+                        <div class="w-full px-3 mb-2">
+                            <mat-form-field appearance="outline">
+                                <mat-label class="text-orange-500">Enter your email</mat-label>
+                                <input matInput class="text-orange-500 " placeholder="pat@example.com"
+                                    formControlName="email" (blur)="updateErrorMessage()" required>
+                                @if (email.invalid) {
+                                <mat-error>{{ emailErrorMessage}}</mat-error>
+                                }
+                            </mat-form-field>
+                        </div>
                     </div>
 
-                }
-    
-              </div>
-              <button type="button" class="btn btn-primary" (click)="addMobile()">Add Mobile Number</button>
-          </div>  
+                    <div class="flex -mx-3">
+                        <div class="w-full px-3 mb-2">
+                            <mat-form-field appearance="outline">
+                                <mat-label class="text-orange-500">Address</mat-label>
+                                <input matInput placeholder="Enter your Address" formControlName="address" type="text" >
 
+                            </mat-form-field>
+                        </div>
+                    </div>
+                    <div class="flex -mx-3">
+                        <div class="w-full px-3 mb-2">
+                            <mat-form-field appearance="outline">
+                                <mat-label class="text-orange-500">Phone Number</mat-label>
+                                <input matInput placeholder="Enter your Phone Number"   formControlName=" phone_number" type="tel">
+                            </mat-form-field>
+                        </div>
+                    </div>
+                    <div class="flex -mx-3">
+                        <div class="w-full px-3 mb-0">
+                            <mat-form-field appearance="outline">
+                                <mat-label class="text-orange-500">Enter your password</mat-label>
+                                <input matInput [type]="hide ? 'password' : 'text'" required formControlName="password">
+                                @if (email.invalid) {
+                                    <mat-error>{{ passwordErrorMessage}}</mat-error>
+                                    }
+                                <button mat-icon-button matSuffix (click)="hide = !hide"
+                                    [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+                                    <mat-icon class="mx-5">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                                </button>
+                            </mat-form-field>
+                        </div>
+                    </div>
+                    <div class="flex mx-2 justify-between items-center mb-1 ">
 
-
-  
-          Address:
-          <div formArrayName="address">
-            @for(control of address.controls;track $index){
-            <div [formGroupName]="$index">
-              city name :
-              <input type="text" formControlName="city" [(ngModel)]="newuser.address">
-              postal code :
-              <input type="text" formControlName="postalCode">
-
-              street:
-              <input type="text" formControlName="street">
-  
-              <button class="btn btn-danger" (click)="removeAddress($index)">Remove</button>
-            </div>
-          }
-  
-          </div>
-          <button type="button" class="btn btn-primary" (click)="addAddress()">Add Address</button>
-  
-          <br>
-          <button type="submit" class="btn btn-success" > >Submit</button>
-        </form>
-  
-  
-      </div>
+                    <mat-checkbox [formControl]="hideRequiredControl" class="accent-slate-500" >I accept terms and privacy Policy</mat-checkbox>
+                    </div>
+                    <div class="flex -mx-3">
+                        <div class="w-full px-3 mb-2">
+                            <button
+                                class="block tracking-wide   w-full max-w-xs mx-auto bg-orange-500 hover:bg-orange-500 focus:bg-orange-500 text-white rounded-lg px-3 py-3 font-semibold">REGISTER
+                                NOW</button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
     </div>
-  </div>
-  
-  
-  <h2>{{formGroup1.value|json}}</h2>
+</div>
 
-  <div>
-    <button (click)="loginFunc()" [hidden]="isuser">login</button>
-    <button (click)="logoutFunc()" [hidden]="!isuser">logout</button>
-  </div>
+<!-- <div class="flex items-end justify-end fixed bottom-0 right-0 mb-4 mr-4 z-10">
+    <div>
+        <a title="Buy me a beer" href="https://www.buymeacoffee.com/scottwindon" target="_blank"
+            class="block w-12 h-12 rounded-full transition-all shadow hover:shadow-lg transform hover:scale-110 hover:rotate-12">
+            <img class="object-cover object-center w-full h-full rounded-full"
+                src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSAJZDiyW25ZoXGSYAB2p5nh4cUeDKbEQ2VgEEvi1xiTw&s" />
+        </a>
+    </div>
+</div> -->
