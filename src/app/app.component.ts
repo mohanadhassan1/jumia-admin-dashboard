@@ -9,6 +9,7 @@ import { OrdersComponent } from "./components/orders/orders.component";
 import {MatSidenavModule} from '@angular/material/sidenav';
 import { BrowserModule } from '@angular/platform-browser';
 import { ManageProductsComponent } from './components/manage-products/manage-products.component';
+import { MatDialogModule } from '@angular/material/dialog';
 
 
 
@@ -21,7 +22,7 @@ import { ManageProductsComponent } from './components/manage-products/manage-pro
     
     imports: [ MatSidenavModule, LoginComponent, FormsModule, ReactiveFormsModule, SidebarComponent, MatGridListModule,RouterOutlet,RouterModule,SignupComponent,
       
-      ReactiveFormsModule,ManageProductsComponent]
+      ReactiveFormsModule,ManageProductsComponent, MatDialogModule]
 })
 export class AppComponent {
   title = 'jumia-admin-dashboard';
