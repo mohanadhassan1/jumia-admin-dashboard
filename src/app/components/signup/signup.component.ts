@@ -111,7 +111,7 @@ export class SignupComponent implements OnInit{
     this.vendorAuth.addVendor(this.vendorForm.value).subscribe({
       next:(data)=>{
         console.log(data)
-        this.openDialog()
+        this.dialog.open(RegisterModalComponent)
         // this.router.navigate(['http://localhost:4200/']);
        
       },
@@ -119,11 +119,13 @@ export class SignupComponent implements OnInit{
       console.log(err)
       alert("errror")
     }
-    })
+
 
 
   }
-  openDialog() {
-    this.dialog.open(RegisterModalComponent);
-  } 
+    )
+  
+
 }
+}
+
