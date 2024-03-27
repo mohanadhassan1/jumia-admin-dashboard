@@ -8,7 +8,7 @@
     <mat-chip-listbox aria-label="Product selection" (selectionChange)="onChipSelect($event)">
         <mat-chip-option color="accent" [selected]="selectedChip === 'All'">All</mat-chip-option>
         @for (chip of chips; track $index) {
-            <mat-chip-option [value]="chip">{{chip}}</mat-chip-option>
+        <mat-chip-option [value]="chip">{{chip}}</mat-chip-option>
         }
     </mat-chip-listbox>
 
@@ -42,6 +42,26 @@
         <ng-container matColumnDef="description">
             <th mat-header-cell *matHeaderCellDef> Description </th>
             <td mat-cell *matCellDef="let element"> {{element.description}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="actions">
+            <th mat-header-cell *matHeaderCellDef> Actions </th>
+            <td mat-cell *matCellDef="let element">
+                
+                <!-- <mat-cell *matCellDef="let element"> 
+                    <button mat-icon-button matTooltip="Click to Edit" class="iconbutton" color="primary" (click)="editProduct(element)">
+                        <mat-icon>edit</mat-icon>
+                    </button> 
+                </mat-cell>
+
+                <mat-cell *matCellDef="let element"> <button mat-icon-button matTooltip="Click to Delete"
+                        class="iconbutton" (click)="deleteProduct(element)" color="warn">
+                        <mat-icon>delete</mat-icon>
+                    </button> </mat-cell> -->
+
+                <button mat-icon-button color="primary" (click)="editProduct(element)">Edit</button>
+                <button mat-icon-button color="warn" (click)="deleteProduct(element)">Delete</button>
+            </td>
         </ng-container>
 
         <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>

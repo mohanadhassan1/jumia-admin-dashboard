@@ -1,0 +1,54 @@
+/* product-edit-dialog.component.scss */
+
+/* Styling for the dialog title */
+.mat-dialog-title {
+  font-size: 24px;
+  font-weight: bold;
+  color: #333; /* Adjust color as needed */
+}
+
+/* Styling for the dialog content */
+.mat-dialog-content {
+  margin-top: 20px;
+  padding: 50px;
+}
+
+/* Styling for the form fields */
+mat-form-field {
+  width: 100%;
+  // margin-bottom: 20px;
+}
+
+/* Styling for the input fields */
+input.mat-input,
+textarea.mat-input {
+  width: 100%;
+}
+
+/* Styling for the dialog actions */
+.mat-dialog-actions {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 20px;
+}
+
+/* Styling for the Cancel button */
+button.mat-button {
+  margin-right: 10px;
+}
+
+/* Styling for the Save button */
+button.mat-button[color="primary"] {
+  background-color: #007bff; /* Primary button color */
+  color: #fff; /* Text color */
+}
+
+button.mat-button[color="primary"]:hover {
+  background-color: #0056b3; /* Darker shade of primary color on hover */
+}
+
+button.mat-button:disabled {
+  opacity: 0.5; /* Reduce opacity for disabled state */
+  cursor: not-allowed; /* Show not-allowed cursor for disabled state */
+}
+
