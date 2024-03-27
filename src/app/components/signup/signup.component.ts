@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 import { CommonModule } from '@angular/common';
-import {  FormArray, FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators} from '@angular/forms';
+import {  FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators} from '@angular/forms';
 import { Ivendor } from '../../models/ivendor';
 import { VendorserviceService } from '../../services/vendorservice.service';
 import {MatFormFieldModule} from '@angular/material/form-field';
@@ -11,6 +11,10 @@ import {merge} from 'rxjs';
 import {takeUntilDestroyed} from '@angular/core/rxjs-interop';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import { RouterLink } from '@angular/router';
+import {Dialog, DialogModule, DialogRef} from '@angular/cdk/dialog';
+import { RegisterModalComponent } from '../register-modal/register-modal.component';
+import { Router } from '@angular/router';
+
 
 
 
@@ -25,6 +29,7 @@ import { RouterLink } from '@angular/router';
   imports: [ReactiveFormsModule,CommonModule,MatFormFieldModule,MatInputModule,
     MatIconModule,   
      MatCheckboxModule,
+     DialogModule,
   RouterLink],
   templateUrl: './signup.component.html',
   styleUrl: './signup.component.scss'
@@ -47,7 +52,7 @@ export class SignupComponent implements OnInit{
 
 
   
-  constructor(private formbuilder:FormBuilder,private vendorAuth:VendorserviceService,) {}
+  constructor(private formbuilder:FormBuilder,private vendorAuth:VendorserviceService,public dialog: Dialog,private router: Router) {}
    ngOnInit(): void {
     this.vendorForm=this.formbuilder.group({
       name:['',[Validators.required,Validators.minLength(5)]],
@@ -106,7 +111,8 @@ export class SignupComponent implements OnInit{
     this.vendorAuth.addVendor(this.vendorForm.value).subscribe({
       next:(data)=>{
         console.log(data)
-        alert("successful")
+        this.openDialog()
+        // this.router.navigate(['http://localhost:4200/']);
        
       },
     error:(err)=>{
@@ -117,6 +123,7 @@ export class SignupComponent implements OnInit{
 
 
   }
- 
-  
+  openDialog() {
+    this.dialog.open(RegisterModalComponent);
+  } 
 }
