@@ -6,13 +6,18 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatChipsModule } from '@angular/material/chips';
 import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
 
-import { ProductService } from '../../services/product.service'; // Import your ProductService
+import { ProductService } from '../../services/product.service';
 import { IProduct } from '../../models/iproduct';
+
+import { MatDialog } from '@angular/material/dialog';
+import { ProductEditDialogComponent } from '../manage-products/product-edit-dialog/product-edit-dialog.component'; 
+import { MatIconModule } from '@angular/material/icon';
+
 
 @Component({
   selector: 'app-manage-products',
   standalone: true,
-  imports: [MatFormField, MatTableModule, MatFormFieldModule, MatInputModule, MatTableModule, MatChipsModule, MatPaginatorModule],
+  imports: [MatFormField, MatTableModule, MatFormFieldModule, MatInputModule, MatIconModule, MatTableModule, MatChipsModule, MatPaginatorModule],
   templateUrl: './manage-products.component.html',
   styleUrl: './manage-products.component.scss'
 })
@@ -20,7 +25,7 @@ import { IProduct } from '../../models/iproduct';
 
 export class ManageProductsComponent implements OnInit, AfterViewInit {
 
-  displayedColumns: string[] = ['index', 'name', 'brand', 'price', 'quantity_in_stock', 'description'];
+  displayedColumns: string[] = ['index', 'name', 'brand', 'price', 'quantity_in_stock', 'description', 'actions'];
 
   selectedChip: string = 'All';
   chips: string[] = ['Brand', 'Price', 'Quantity'];
@@ -29,7 +34,9 @@ export class ManageProductsComponent implements OnInit, AfterViewInit {
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
-  constructor(private productService: ProductService) { }
+  constructor(private productService: ProductService, private dialog: MatDialog) { }
+
+
 
   ngOnInit() {
     this.loadProducts();
@@ -74,8 +81,42 @@ export class ManageProductsComponent implements OnInit, AfterViewInit {
     }
   }
 
- 
+  editProduct(product: IProduct) {
+    // Open a dialog for editing the product
+    const dialogRef = this.dialog.open(ProductEditDialogComponent, {
+      width: '500px',
+      data: { product } // Pass the product data to the dialog
+    });
 
+    dialogRef.afterClosed().subscribe(result => {
+      // Handle the result after the dialog is closed
+      if (result) {
+        // If the user clicked save in the dialog, update the product in the dataSource
+        const updatedProduct: IProduct = result;
+        const index = this.dataSource.data.findIndex(p => p._id === updatedProduct._id);
+        if (index !== -1) {
+          this.dataSource.data[index] = updatedProduct;
+          // Refresh paginator after editing product
+          this.dataSource.paginator = this.paginator;
+        }
+      }
+    });
+  }
+
+  deleteProduct(product: IProduct) {
+
+    console.log('Deleting product:', product);
+
+    this.productService.deleteProduct(product._id).subscribe(
+      () => {
+        this.dataSource.data = this.dataSource.data.filter(p => p !== product);
+        console.log('Product deleted successfully');
+      },
+      (error) => {
+        console.error('Error deleting product:', error);
+      }
+    );
+  }
 
 }
 
