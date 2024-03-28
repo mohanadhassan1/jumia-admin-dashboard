@@ -35,6 +35,12 @@ export class VendorserviceService {
 
  
  }
-  
+
+ login(email: string, password: string): Observable<any> {
+  // Assuming you have an endpoint for login, you can replace 'loginUrl' with your actual login endpoint
+  const loginUrl = `${this.apiUrl}/login`;
+  const loginData = { email, password };
+  return this.httpclient.post(loginUrl, JSON.stringify(loginData), this.httpHeader);
+}
   
 }

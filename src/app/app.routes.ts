@@ -10,8 +10,11 @@ import { AddProductComponent } from './components/add-product/add-product.compon
 export const routes: Routes = [
     {path: '', component: AddProductComponent},
     {path: 'orders', component: OrdersComponent},
+    {path:'login',component: LoginComponent},
+
+
     
-    // {path: 'signup', component: SignupComponent},
+    {path: 'signup', component: SignupComponent},
     {path: 'manageproducts', component: ManageProductsComponent},
     
     {path: '**', component: AddProductComponent},

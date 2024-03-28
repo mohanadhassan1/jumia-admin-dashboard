@@ -1,32 +1,56 @@
+import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { VendorserviceService } from '../../services/vendorservice.service';
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
-import {MatIconModule} from '@angular/material/icon';
-import {MatButtonModule} from '@angular/material/button';
-import {MatInputModule} from '@angular/material/input';
-import {MatFormFieldModule} from '@angular/material/form-field';
-import {MatCardModule} from '@angular/material/card';
-
-import {FormControl, Validators, FormsModule, ReactiveFormsModule} from '@angular/forms';
-
 
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [MatFormFieldModule, MatInputModule, FormsModule, ReactiveFormsModule, MatIconModule, CommonModule, MatCardModule, MatButtonModule],
+  imports: [ReactiveFormsModule,CommonModule],
   templateUrl: './login.component.html',
   styleUrl: './login.component.scss'
 })
-export class LoginComponent {
+export class LoginComponent implements OnInit{
 
-  hide = true;
+  hidePassword: boolean = true;
+loginForm!: FormGroup;
 
-  email = new FormControl('', [Validators.required, Validators.email]);
+  constructor(private vendorSevice:VendorserviceService,private formBuilder: FormBuilder) {}
 
-  getErrorMessage() {
-    if (this.email.hasError('required')) {
-      return 'You must enter a value';
+  ngOnInit(): void {
+    this.loginForm = this.formBuilder.group({
+      email: ['', [Validators.required, Validators.email ]],
+      password: ['', [Validators.required , Validators.minLength(8)]]
+    })
+  }
+
+  togglePassword(): void {
+    this.hidePassword = !this.hidePassword;
+  }
+  
+  onSubmit(): void {
+    if (this.loginForm.valid) {
+      console.log(this.loginForm.value,this.email,this.password);
+      // Here you can perform any further actions, such as submitting the form data
+      this.vendorSevice.login(this.loginForm.value.email,this.loginForm.value.password).subscribe(data => {
+        console.log(data)
+        alert("successful")
+      })
+
+    } else {
+      // If the form is not valid, handle the error or show validation messages
+      console.log("not valid data",this.email,this.password);
+      
     }
-    return this.email.hasError('email') ? 'Not a valid email' : '';
+  
+    
+  }
+
+  get email(){
+    return this.loginForm.get('email');
+  }
+
+  get password(){
+    return this.loginForm.get('password');
   }
 }
-
