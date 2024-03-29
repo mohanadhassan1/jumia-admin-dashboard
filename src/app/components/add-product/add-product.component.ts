@@ -11,11 +11,13 @@ import { IProduct } from '../../models/iproduct';
 import { ISubcategory } from '../../models/isubcategory';
 import { SubcategoryService } from '../../services/subcategory.service';
 import { ProductService } from '../../services/product.service';
+import { Router, RouterModule } from '@angular/router';
+import * as jwt from 'jsonwebtoken';
 
 @Component({
   selector: 'app-add-product',
   standalone: true,
-  imports: [FormsModule, ReactiveFormsModule],
+  imports: [FormsModule, ReactiveFormsModule, RouterModule],
   templateUrl: './add-product.component.html',
   styleUrl: './add-product.component.scss',
 })
@@ -26,8 +28,9 @@ export class AddProductComponent implements OnInit {
   constructor(
     private productService: ProductService,
     private subcategoryService: SubcategoryService,
-    private formBuilder: FormBuilder
-  ) {}
+    private formBuilder: FormBuilder,
+    private router: Router
+  ) { }
 
   ngOnInit(): void {
     this.addProductForm = this.formBuilder.group({
@@ -38,9 +41,14 @@ export class AddProductComponent implements OnInit {
       brand: ['', Validators.required],
       subcategory_id: ['', Validators.required], // Update to match form control name
       images: ['', Validators.required],
-      vendor_id: ['', Validators.required],
+      // vendor_id: ['', Validators.required],
     });
 
+    this.loadSubcategories()
+    this.verifyToken() 
+  }
+
+  loadSubcategories(): void {
     this.subcategoryService.getAllSubcategories().subscribe(
       (res: ISubcategory[]) => {
         this.subcategories = res;
@@ -53,8 +61,24 @@ export class AddProductComponent implements OnInit {
     );
   }
 
+
+  verifyToken(): any {
+    const token = localStorage.getItem("token");
+    if (!token) {
+      this.router.navigate(['/login']);
+    }
+    else {
+      var decoded = jwt.verify(token, 'shhhhh');
+      console.log(decoded)
+    }
+  }
+
+
+
   submitForm() {
     console.log('Form values:', JSON.stringify(this.addProductForm.value));
+    console.log(localStorage.getItem("token"));
+
 
     // Assign subcategory_id from form value to product
 

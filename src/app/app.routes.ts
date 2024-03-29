@@ -5,18 +5,24 @@ import { LoginComponent } from './components/login/login.component';
 import { SignupComponent } from './components/signup/signup.component';
 import { OrdersComponent } from './components/orders/orders.component';
 import { AddProductComponent } from './components/add-product/add-product.component';
+import { AppComponent } from './app.component';
+import { GroupOfComponentsComponent } from './components/group-of-components/group-of-components.component';
 // import { AddproductComponent } from './components/addproduct/addproduct.component';
 
 export const routes: Routes = [
-    {path: '', component: AddProductComponent},
-    {path: 'orders', component: OrdersComponent},
-    {path:'login',component: LoginComponent},
+    { path: 'login', component: LoginComponent },
+    { path: 'signup', component: SignupComponent },
 
-
-    
-    {path: 'signup', component: SignupComponent},
-    {path: 'manageproducts', component: ManageProductsComponent},
-    
-    {path: '**', component: AddProductComponent},
+    {
+        path: '',
+        component: GroupOfComponentsComponent,
+        children: [
+          { path: '', redirectTo: 'add-product', pathMatch: 'full' },
+          { path: 'add-product', component: AddProductComponent },
+          { path: 'orders', component: OrdersComponent },
+          { path: 'manage-products', component: ManageProductsComponent },
+        ],
+      },
+      { path: '**', redirectTo: 'login' }, // Redirect any other unknown routes to add-product
 
 ];

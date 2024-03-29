@@ -30,16 +30,18 @@ loginForm!: FormGroup;
   
   onSubmit(): void {
     if (this.loginForm.valid) {
-      console.log(this.loginForm.value,this.email,this.password);
+      // console.log(this.loginForm.value,this.email,this.password);
+      
       // Here you can perform any further actions, such as submitting the form data
       this.vendorSevice.login(this.loginForm.value.email,this.loginForm.value.password).subscribe(data => {
-        console.log(data)
+        // console.log(data)
+        localStorage.setItem("token", JSON.stringify(data));
         alert("successful")
       })
 
     } else {
       // If the form is not valid, handle the error or show validation messages
-      console.log("not valid data",this.email,this.password);
+      console.log("not valid data");
       
     }
   
