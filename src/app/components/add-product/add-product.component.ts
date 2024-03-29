@@ -12,7 +12,8 @@ import { ISubcategory } from '../../models/isubcategory';
 import { SubcategoryService } from '../../services/subcategory.service';
 import { ProductService } from '../../services/product.service';
 import { Router, RouterModule } from '@angular/router';
-import * as jwt from 'jsonwebtoken';
+
+import { jwtDecode } from "jwt-decode";
 
 @Component({
   selector: 'app-add-product',
@@ -45,7 +46,7 @@ export class AddProductComponent implements OnInit {
     });
 
     this.loadSubcategories()
-    this.verifyToken() 
+    
   }
 
   loadSubcategories(): void {
@@ -62,28 +63,34 @@ export class AddProductComponent implements OnInit {
   }
 
 
-  verifyToken(): any {
-    const token = localStorage.getItem("token");
-    if (!token) {
-      this.router.navigate(['/login']);
-    }
-    else {
-      var decoded = jwt.verify(token, 'shhhhh');
-      console.log(decoded)
-    }
-  }
+ 
 
 
 
   submitForm() {
-    console.log('Form values:', JSON.stringify(this.addProductForm.value));
-    console.log(localStorage.getItem("token"));
+    console.log('Form values:', this.addProductForm.value);
 
-
-    // Assign subcategory_id from form value to product
-
+    // Retrieve JWT token from localStorage
+    const token = localStorage.getItem("token");
+  
+    // Check if token exists
+    if (!token) {
+      console.error('Token not found in localStorage');
+      // Handle error appropriately, maybe redirect to login page or show an error message
+      return;
+    }
+  
+    // Decode the JWT token to get the vendor_id
+    const decodedToken: any = jwtDecode(token);
+    const vendorId = decodedToken.id;
+  
+    // Create the product object with vendor_id from decoded token and other form values
+    const productData = {
+      vendor_id: vendorId,
+      ...this.addProductForm.value
+    };
     // Call your service method to create the product
-    this.productService.createProduct(this.addProductForm.value).subscribe(
+    this.productService.createProduct(productData).subscribe(
       (createdProduct: IProduct) => {
         // Handle success, maybe show a success message or redirect
         console.log('Product created:', createdProduct);

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { VendorserviceService } from '../../services/vendorservice.service';
 import { CommonModule } from '@angular/common';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -15,7 +16,7 @@ export class LoginComponent implements OnInit{
   hidePassword: boolean = true;
 loginForm!: FormGroup;
 
-  constructor(private vendorSevice:VendorserviceService,private formBuilder: FormBuilder) {}
+  constructor(private vendorSevice:VendorserviceService,private formBuilder: FormBuilder , private router:Router) {}
 
   ngOnInit(): void {
     this.loginForm = this.formBuilder.group({
@@ -37,6 +38,8 @@ loginForm!: FormGroup;
         // console.log(data)
         localStorage.setItem("token", JSON.stringify(data));
         alert("successful")
+        this.router.navigate(['/add-product']);
+
       })
 
     } else {
