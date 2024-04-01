@@ -1,0 +1,101 @@
+<div class="container flex-col  flex-wrap  ">
+  <div class="mt-9 pt-5 ps-3">
+    <h3>Preferred payment option</h3>
+    <p class="text-gray-400">Select the payment method, if your choice, and ensure to provide all requird details.
+      We'll review the validity of your documents upon submission.</p>
+
+    <mat-accordion >
+      <mat-expansion-panel [expanded]="value" hideToggle>
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            <mat-radio-group aria-label="Select an option" [(ngModel)]="value" class="p-2">
+              <mat-radio-button [value]="true">This is the expansion title</mat-radio-button>
+            </mat-radio-group>
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+
+        <div class="flex justify-between flex-wrap">
+          <div class="w-1/4 mx-2 py-2">
+            <div class="flex justify-between">
+              <p>Beneficiary Name</p>
+              <p class="text-gray-400">Required</p>
+            </div>
+            <input class="border-2 border-black mt-1 rounded-md p-2 w-full" placeholder="Beneficiary Name">
+          </div>
+          <div class="w-1/4 mx-2 py-2">
+            <div class="flex justify-between">
+              <p>Bank Account Number</p>
+              <p class="text-gray-400">Required</p>
+            </div>
+            <input class="border-2 border-black mt-1 rounded-md p-2 w-full" placeholder="Bank Account Number">
+          </div>
+          <div class="w-1/4 mx-2 py-2">
+            <div class="flex justify-between">
+              <div class="flex">
+                <p>IBAN</p>
+                <mat-icon class="text-[#F68B1E]"><span class="material-symbols-outlined">
+                    error
+                  </span></mat-icon>
+              </div>
+              <p class="text-gray-400">Required</p>
+            </div>
+            <input class="border-2 border-black mt-1 rounded-md p-2 w-full" placeholder="IBAN">
+          </div>
+          <div class="w-1/4 mx-2 py-2">
+            <div class="flex justify-between">
+              <p>SWIFT Code</p>
+              <p class="text-gray-400">Required</p>
+            </div>
+            <input class="border-2 border-black mt-1 rounded-md p-2 w-full" placeholder="SWIFT Code">
+          </div>
+          <div class="w-1/4 mx-2 py-2">
+            <div class="flex justify-between">
+              <p>Bank Name</p>
+              <p class="text-gray-400">Required</p>
+            </div>
+            <!-- <input class="border-2 border-black mt-1 rounded-md p-2 w-full"> -->
+
+            <div   class=" w-full" placeholder="Bank Name">
+              <mat-form-field class="w-full bg-white  border-2 border-black  rounded-md">
+
+              <select class="w-full border-b-0 p-2 mt-1" matNativeControl required>
+                <option value="" disabled selected class="text-gray-400">Bank name</option>
+                <option value="CIB">CIB</option>
+                <option value="Bank masr">Bank masr</option>
+                <option value="Bank El Qahera">Bank El Qahera</option>
+                <option value="Bank El Alahly">Bank El Alahly</option>
+              </select>
+              </mat-form-field>
+            </div >
+          </div>
+          <div class="w-1/4 mx-2 py-2">
+            <div class="flex justify-between">
+              <div class="flex ">
+                <p>Bank Information Document</p>
+                <mat-icon class="text-[#F68B1E]"><span class="material-symbols-outlined">
+                    error
+                  </span></mat-icon>
+              </div>
+              <p class="text-gray-400">Required</p>
+            </div>
+            <div class="flex justify-between border-2 border-black mt-1 rounded-md p-2 w-full">
+              <input class="" placeholder="Bank Information Document">
+              <mat-icon class="cursor-pointer">
+                <span class="material-symbols-outlined">
+                  attach_file
+                </span>
+              </mat-icon>
+            </div>
+          </div>
+        </div>
+      </mat-expansion-panel>
+    </mat-accordion>
+
+
+
+
+
+
+
+  </div>
+</div>
