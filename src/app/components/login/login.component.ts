@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angula
 import { VendorserviceService } from '../../services/vendorservice.service';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -16,7 +17,7 @@ export class LoginComponent implements OnInit{
   hidePassword: boolean = true;
 loginForm!: FormGroup;
 
-  constructor(private vendorSevice:VendorserviceService,private formBuilder: FormBuilder , private router:Router) {}
+  constructor(private authService:AuthService,private formBuilder: FormBuilder , private router:Router) {}
 
   ngOnInit(): void {
     this.loginForm = this.formBuilder.group({
@@ -29,33 +30,43 @@ loginForm!: FormGroup;
     this.hidePassword = !this.hidePassword;
   }
   
-  onSubmit(): void {
-    if (this.loginForm.valid) {
-      // console.log(this.loginForm.value,this.email,this.password);
+  // onSubmit(): void {
+  //   if (this.loginForm.valid) {
+  //     // console.log(this.loginForm.value,this.email,this.password);
       
-      // Here you can perform any further actions, such as submitting the form data
-      this.vendorSevice.login(this.loginForm.value.email,this.loginForm.value.password).subscribe(data => {
-        // console.log(data)
-        localStorage.setItem("token", JSON.stringify(data));
-        alert("successful")
-        this.router.navigate(['/add-product']);
+  //     // Here you can perform any further actions, such as submitting the form data
+  //     this.authService.login(this.loginForm.value.email,this.loginForm.value.password)
 
-      })
-
-    } else {
-      // If the form is not valid, handle the error or show validation messages
-      console.log("not valid data");
+  //   } else {
+  //     // If the form is not valid, handle the error or show validation messages
+  //     console.log("not valid data");
       
-    }
+  //   }
   
     
+  // }
+
+  onSubmit(): void {
+    if (this.loginForm.valid) {
+      const { email, password } = this.loginForm.value;
+      this.authService.login(email, password).subscribe(success => {
+        if (success) {
+          alert("Login successful");
+          this.router.navigate(['/add-product']);
+        } else {
+          console.log("Login failed");
+        }
+      });
+    } else {
+      console.log("Invalid form data");
+    }
   }
 
-  get email(){
+  get email() {
     return this.loginForm.get('email');
   }
 
-  get password(){
+  get password() {
     return this.loginForm.get('password');
   }
 }
