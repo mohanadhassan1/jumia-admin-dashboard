@@ -34,6 +34,7 @@
         --orange-400: #FFA400;
 
         --surface-border: #999999
+        
 
     
 
@@ -42,6 +43,10 @@
     
 }
 
+
+.mat-mdc-standard-chip.mat-mdc-chip-selected.mat-primary{
+    background-color:orange !important;
+}
 html, body {
     background-color: var(--background-body);
     font-family: Arial, sans-serif;
