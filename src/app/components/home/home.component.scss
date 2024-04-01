@@ -1,0 +1,25 @@
+.head{
+    padding: 10px;
+    margin: 0px;
+}
+.bt-col{
+    background-color: #fEF3E9;
+    color:#f68b1E;
+    font-size:14px;
+    letter-spacing: 2px;
+}
+
+ ::ng-deep .mat-mdc-standard-chip.mdc-evolution-chip--with-primary-graphic .mdc-evolution-chip__action--primary {
+//    background-color:#f68b1E;
+   border-radius: 12px;
+}
+::ng-deep .mdc-evolution-chip__action{
+    color: #aaa;
+    background-color: green;
+}
+::ng-deep .mdc-evolution-chip__action .mat-mdc-chip-action .mdc-evolution-chip__action--primary {
+    background-color: aqua;
+}
+*, ::before, ::after {
+    border-style: none;
+  }
