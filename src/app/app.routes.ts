@@ -31,7 +31,6 @@ export const routes: Routes = [
           { path: 'manage-products', component: ManageProductsComponent },
         ],
       },
-      { path: '**', redirectTo: 'login' }, // Redirect any other unknown routes to add-product
       {path: 'profile', component:ProfileComponent,children: [
         {path:"shop",component:ShopComponent},
         {path:"business",component:BusinessInformationComponent},
@@ -41,7 +40,8 @@ export const routes: Routes = [
             {path:"shopDetails",component:ShopDetailsComponent}
         ]},
         {path:"payment",component:PaymentInformationComponent},
-    ]}
+    ]},
     
+    { path: '**', redirectTo: 'login' }, // Redirect any other unknown routes to add-product
 
 ];
