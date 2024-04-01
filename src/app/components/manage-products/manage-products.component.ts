@@ -10,7 +10,7 @@ import { ProductService } from '../../services/product.service';
 import { IProduct } from '../../models/iproduct';
 
 import { MatDialog } from '@angular/material/dialog';
-import { ProductEditDialogComponent } from '../manage-products/product-edit-dialog/product-edit-dialog.component'; 
+import { ProductEditDialogComponent } from '../manage-products/product-edit-dialog/product-edit-dialog.component';
 import { MatIconModule } from '@angular/material/icon';
 
 
@@ -81,27 +81,55 @@ export class ManageProductsComponent implements OnInit, AfterViewInit {
     }
   }
 
+  
+  
   editProduct(product: IProduct) {
-    // Open a dialog for editing the product
     const dialogRef = this.dialog.open(ProductEditDialogComponent, {
       width: '500px',
-      data: { product } // Pass the product data to the dialog
+      data: { product }
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      // Handle the result after the dialog is closed
       if (result) {
-        // If the user clicked save in the dialog, update the product in the dataSource
         const updatedProduct: IProduct = result;
-        const index = this.dataSource.data.findIndex(p => p._id === updatedProduct._id);
-        if (index !== -1) {
-          this.dataSource.data[index] = updatedProduct;
-          // Refresh paginator after editing product
-          this.dataSource.paginator = this.paginator;
-        }
+
+        this.productService.updateProduct(updatedProduct).subscribe(
+          (updatedProduct) => {
+            const index = this.dataSource.data.findIndex(p => p._id === updatedProduct._id);
+            if (index !== -1) {
+              this.dataSource.data[index] = updatedProduct;
+              this.dataSource.paginator = this.paginator;
+            }
+            console.log('Product updated successfully:', updatedProduct);
+          },
+          (error) => {
+            console.error('Error updating product:', error);
+          }
+        );
       }
     });
   }
+
+  // updateProduct(updateProduct: IProduct): void {
+
+  //   this.productService.updateProduct(updateProduct).subscribe({
+  //     next: (product) => {
+  //       product.name = updateProduct.name;
+  //       product.brand = updateProduct.brand;
+  //       product.price = updateProduct.price;
+  //       product.quantity_in_stock = updateProduct.quantity_in_stock;
+  //       product.description = updateProduct.description;
+
+  //     },
+  //     error: (error: any) => {
+  //       console.error('Error fetching product details:', error);
+  //     }
+  //   })
+  // }
+
+
+
+
 
   deleteProduct(product: IProduct) {
 
