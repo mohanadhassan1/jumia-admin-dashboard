@@ -1,0 +1,48 @@
+<div class="container flex-col  flex-wrap  ">
+    <div class="pt-5 ps-3">
+        <div class="flex justify-between">
+            <div class="flex">
+                <p>do you have an existing shop on Jumia?</p>
+                <mat-icon><span class="material-symbols-outlined text-[#F68B1E]">
+                        error
+                    </span></mat-icon>
+            </div>
+            <div class="flex">
+                <mat-radio-group aria-label="Select an option">
+                    <mat-radio-button value="1">Yas, Ihave existing account on Jumia</mat-radio-button>
+                    <mat-radio-button value="2" class="ms-7">No, It's my first time with Jumia</mat-radio-button>
+                </mat-radio-group>
+
+            </div>
+        </div>
+        <hr class="my-3  text-gray-400 bg-gray-400">
+        <div class="flex justify-between ">
+
+            <div class="flex">
+                <p>What type of Seller are you?</p>
+                <p class="text-gray-400">(Select all that apply)</p>
+            </div>
+            <div class="flex w-1/3 relative bg-white h-28">
+
+                <div class="flex-col ">
+                    <mat-form-field  >
+                        <select class="p-8" matNativeControl required>
+                            <option value="volvo">option 1</option>
+                            <option value="saab">option 2</option>
+                            <option value="mercedes">option 3</option>
+                            <option value="audi">option 4</option>
+                        </select>
+                    </mat-form-field>
+
+                    <div class="flex mt-2 ms-14 absolute end-0">
+                        <button mat-raised-button
+                            class="bg-white  py-1 px-7 rounded-md border-2 border-gray-400 text-[#F68B1E]">Next</button>
+                        <button mat-raised-button
+                            class="bg-[#F68B1E] py-1 px-7 rounded-md border-2 border-gray-400 ms-7">Save</button>
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>

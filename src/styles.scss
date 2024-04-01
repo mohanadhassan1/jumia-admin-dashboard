@@ -21,12 +21,32 @@
 
     --button-color: #37415a;
     --button-hover: #102458;
+    
+        --red-500: #ff0000;
+        --green-500: #00ff00;
+        --green-400: #00ff00;
+
+        --yellow-500: #ffff00;
+        --yellow-400: #ffff00;
+
+        --bluegray-500: #808080;
+        --orange-500: #FFA500;
+        --orange-400: #FFA400;
+
+        --surface-border: #999999
+        
+
+    
 
     // --font-family: Arial, sans-serif;
 
     
 }
 
+
+.mat-mdc-standard-chip.mat-mdc-chip-selected.mat-primary{
+    background-color:orange !important;
+}
 html, body {
     background-color: var(--background-body);
     font-family: Arial, sans-serif;

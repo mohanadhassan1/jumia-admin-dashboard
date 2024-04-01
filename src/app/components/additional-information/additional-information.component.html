@@ -1,0 +1,19 @@
+<div class="container flex-col  flex-wrap  ">
+    <div class="mt-9 pt-5 ps-3">
+        <div class="flex">
+            <div class="px-6 py-1" [class.selected]="isClickedShopDetails" (click)="goToShopDetails()">
+                <p> Shop Details</p>
+                <hr>
+            </div>
+            <div class="px-6 py-1" [class.selected]="isClickedCatalogDetails" (click)="goToCatalogDetails()">
+                <p> Cayalog Details</p>
+                <hr>
+            </div>
+
+
+        </div>
+        <!-- <hr class="text"> -->
+        <router-outlet></router-outlet>
+
+    </div>
+</div>

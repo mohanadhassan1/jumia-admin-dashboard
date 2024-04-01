@@ -1,0 +1,121 @@
+<div class="bg-white rounded-lg pb-10 ">
+
+  <h2>Welcome to Jumia! Let's take your ship live! </h2>
+  <p class="text-gray-400">Complete all the sections below to take your shop live. </p>
+  <!-- Cards with media area -->
+  <div class="container flex row flex-wrap ">
+
+    <div class="example-card	w-52 mt-5 ml-5 m-auto bg-gray-100 " [class.selected]="isClickedShop" (click)="goToShop()">
+      <div class="flex">
+
+        <div class='p-2'>
+          <mat-card-title>Shop <br>Information</mat-card-title>
+
+        </div>
+        <div class="w-full ms-11">
+          <mat-icon class="icons">
+            <span class="material-symbols-outlined text-5xl text-[#F68B1E]">
+              shopping_bag
+            </span>
+          </mat-icon>
+        </div>
+      </div>
+      <hr>
+      <div class='p-2'>
+        COPMLETED
+      </div>
+    </div>
+
+    <div class="example-card	w-52 mt-5 ml-5 m-auto bg-gray-100" [class.selected]="isClickedBdiness"
+      (click)="goToBusinessInfo()">
+      <div class="flex">
+
+        <div class="p-2">
+          <mat-card-title>Business <br>Information</mat-card-title>
+
+        </div>
+        <div class="w-full ms-11">
+          <mat-icon class="icons">
+            <span class="material-symbols-outlined text-5xl text-[#F68B1E]">
+              trending_up
+            </span>
+          </mat-icon>
+        </div>
+      </div>
+      <hr>
+      <div class="p-2">
+        PENDING
+      </div>
+    </div>
+
+    <div class="example-card	w-52 mt-5 ml-5 m-auto bg-gray-100" [class.selected]="isClickedShopping "
+      (click)="goToShoppingInfo()">
+      <div class="flex">
+
+        <div class="p-2">
+          <mat-card-title>Shipping <br>Information</mat-card-title>
+
+        </div>
+        <div class="w-full ms-11">
+          <mat-icon class="icons">
+            <span class="material-symbols-outlined text-5xl text-[#F68B1E]">
+              local_shipping
+            </span>
+          </mat-icon>
+        </div>
+      </div>
+      <hr>
+      <div class="p-2">
+        PENDING
+      </div>
+    </div>
+    <div class="example-card	w-52 mt-5 ml-5 m-auto bg-gray-100 " [class.selected]="isClickedPayment "
+      (click)="goToPaymentInfo()">
+      <div class="flex">
+        <div class="p-2">
+          <mat-card-title>Payment <br>Information</mat-card-title>
+        </div>
+        <div class="w-full ms-11">
+          <mat-icon class="icons">
+            <span class="material-symbols-outlined text-5xl text-[#F68B1E]">
+              credit_card
+            </span>
+          </mat-icon>
+        </div>
+      </div>
+
+      <hr>
+      <div class="p-2">
+        PENDING
+      </div>
+    </div>
+
+    <div class="example-card	w-52 mt-5 ml-5 m-auto bg-gray-100" [class.selected]="isClickedAdditional "
+      (click)="goToAdditionalInfo()">
+      <div class="flex">
+
+        <div class="p-2">
+          <mat-card-title>Additional <br>Information</mat-card-title>
+
+        </div>
+        <div class="w-full ms-11">
+          <mat-icon class="icons">
+            <span class="material-symbols-outlined text-5xl text-[#F68B1E]">
+              add_circle
+            </span>
+          </mat-icon>
+        </div>
+      </div>
+      <hr>
+      <div class="p-2">
+        PENDING
+      </div>
+    </div>
+  </div>
+</div>
+<div class="rounded-lg bg-white">
+  <!-- Other content of ProfileComponent -->
+
+  <router-outlet></router-outlet>
+
+</div>
