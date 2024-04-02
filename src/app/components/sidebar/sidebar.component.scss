@@ -23,7 +23,7 @@ margin-bottom: 0px ;
 }
 .item{
     width: 90%;
-    border-radius: 10px; /* Adjust border radius as needed */
+    border-radius: 10px; 
     margin: auto; 
     font-size: 20px;
     display: flex;
@@ -91,34 +91,27 @@ margin-bottom: 0px ;
     font-weight: normal;
   }
   .accordion-container {
-    max-height: 300px; /* Adjust the max height as needed */
+    max-height: 300px; 
     overflow-y: auto;
-    margin-bottom: 20px; /* Optional: Add space between accordion containers */
+    margin-bottom: 20px; 
   }
 .main-container{
-    max-height: 100vh; /* Adjust the max height of the main container */
+    max-height: 100vh; 
     overflow: hidden; 
 }
-  /* CSS */
-/* Hide the default scrollbar */
 ::-webkit-scrollbar {
-    width: 10px; /* Width of the scrollbar */
+    width: 10px; 
   }
   
-  /* Track */
   ::-webkit-scrollbar-track {
-    background: #f1f1f1; /* Color of the scrollbar track */
+    background: #f1f1f1; 
   }
   
-  /* Handle */
   ::-webkit-scrollbar-thumb {
-    background: #aaa; /* Color of the scrollbar handle */
+    background: #aaa; 
   }
   
-//   /* Handle on hover */
-//   ::-webkit-scrollbar-thumb:hover {
-//     background: #555; /* Color of the scrollbar handle on hover */
-//   }
+
 
   .shops-head{
     background-color: bisque;
