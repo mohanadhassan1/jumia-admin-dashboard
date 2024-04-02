@@ -34,12 +34,17 @@ export const routes: Routes = [
           { path: 'manage-products', component: ManageProductsComponent ,title: 'Manage Products' , canActivate:[authGuard]},
           { path: 'home', component: HomeComponent ,title: 'Home' , canActivate:[authGuard]},
           {path: 'profile', component:ProfileComponent,title:'profile' , canActivate:[authGuard],children: [
+          { path: 'orders', component: OrdersComponent },
+          { path: 'manage-products', component: ManageProductsComponent },
+
+          { path: 'home', component: HomeComponent },
+          {path: 'profile', component:ProfileComponent,children: [
             {path:"shop",component:ShopComponent},
             {path:"business",component:BusinessInformationComponent},
             {path:"Shipping",component:ShoppingInformationComponent},
             {path:"additional",component:AdditionalInformationComponent,children:[
                 {path:"catalogDetails",component:CayalogDetailsComponent},
-                {path:"shopDetails",component:ShopDetailsComponent}
+                {path:"shopDetails",component:ShopDetailsComponent},
             ]},
             {path:"payment",component:PaymentInformationComponent},
         ] , },
