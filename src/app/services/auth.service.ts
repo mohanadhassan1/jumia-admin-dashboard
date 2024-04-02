@@ -28,7 +28,7 @@ export class AuthService {
         
         (error) => {
           console.error("Login failed:", error);
-          alert("Login failed. Please try again.");
+          
           observer.next(false);
           observer.complete();
         }

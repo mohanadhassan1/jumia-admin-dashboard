@@ -4,11 +4,12 @@ import { VendorserviceService } from '../../services/vendorservice.service';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [ReactiveFormsModule,CommonModule],
+  imports: [ReactiveFormsModule,CommonModule,],
   templateUrl: './login.component.html',
   styleUrl: './login.component.scss'
 })
@@ -17,7 +18,7 @@ export class LoginComponent implements OnInit{
   hidePassword: boolean = true;
 loginForm!: FormGroup;
 
-  constructor(private authService:AuthService,private formBuilder: FormBuilder , private router:Router) {}
+  constructor(private authService:AuthService,private formBuilder: FormBuilder , private router:Router,private toastr: ToastrService) {}
 
   ngOnInit(): void {
     this.loginForm = this.formBuilder.group({
@@ -51,14 +52,17 @@ loginForm!: FormGroup;
       const { email, password } = this.loginForm.value;
       this.authService.login(email, password).subscribe(success => {
         if (success) {
-          alert("Login successful");
+          this.toastr.success('Login successful', 'Success').onShown.subscribe(success => {
           this.router.navigate(['/add-product']);
+          });  
+
         } else {
-          console.log("Login failed");
+          this.toastr.error('Login failed', 'Failed')
         }
       });
     } else {
-      console.log("Invalid form data");
+      this.toastr.error('Invalid form data', 'Failed')
+      
     }
   }
 

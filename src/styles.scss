@@ -2,7 +2,7 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
+@import 'ngx-toastr/toastr';
 
 :root {
     // --background-body: #898585;
