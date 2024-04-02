@@ -42,7 +42,7 @@ export class AuthService {
     this.router.navigate(['/login']);
   }
 
-  isLoggedIn(): boolean {
-    return this.isLoggedInSubject.value;
+  isLoggedIn(): Observable<boolean>  {
+    return this.isLoggedInSubject.asObservable();
   }
 }
