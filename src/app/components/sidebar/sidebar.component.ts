@@ -10,7 +10,8 @@ import {MatIconModule} from '@angular/material/icon';
 import {MatButtonModule} from '@angular/material/button';
 import {provideNativeDateAdapter} from '@angular/material/core';
 import {MatListModule} from '@angular/material/list';
-import { RouterLink } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
+import { AuthService } from '../../services/auth.service';
 
 
 
@@ -38,6 +39,15 @@ export class SidebarComponent {
 
   @ViewChild(MatAccordion)
   accordion!: MatAccordion;
+
+  constructor(private authService: AuthService, private router: Router) {}
+
+  logout(): void {
+    console.log("log out...");
+    
+    this.authService.logout(); // Call the logout method from the AuthService
+    this.router.navigate(['/login']); // Navigate to the login page after logout
+  }
 
 
 }
