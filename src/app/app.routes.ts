@@ -31,6 +31,7 @@ export const routes: Routes = [
           { path: 'add-product', component: AddProductComponent , title: 'Add Product' , canActivate:[authGuard]},
           { path: 'orders', component: OrdersComponent },
           { path: 'manage-products', component: ManageProductsComponent },
+
           { path: 'home', component: HomeComponent },
           {path: 'profile', component:ProfileComponent,children: [
             {path:"shop",component:ShopComponent},
@@ -38,13 +39,15 @@ export const routes: Routes = [
             {path:"Shipping",component:ShoppingInformationComponent},
             {path:"additional",component:AdditionalInformationComponent,children:[
                 {path:"catalogDetails",component:CayalogDetailsComponent},
-                {path:"shopDetails",component:ShopDetailsComponent}
+                {path:"shopDetails",component:ShopDetailsComponent},
             ]},
             {path:"payment",component:PaymentInformationComponent},
         ]},
+        
         ],
       },
-    
+      
+
     { path: '**', redirectTo: 'login' }, // Redirect any other unknown routes to add-product
 
 ];
