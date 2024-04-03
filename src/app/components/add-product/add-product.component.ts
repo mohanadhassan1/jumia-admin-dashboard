@@ -14,6 +14,7 @@ import { ProductService } from '../../services/product.service';
 import { Router, RouterModule } from '@angular/router';
 
 import { jwtDecode } from "jwt-decode";
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-add-product',
@@ -30,7 +31,8 @@ export class AddProductComponent implements OnInit {
     private productService: ProductService,
     private subcategoryService: SubcategoryService,
     private formBuilder: FormBuilder,
-    private router: Router
+    private router: Router,
+    private toastr: ToastrService
   ) { }
 
   ngOnInit(): void {
@@ -57,6 +59,7 @@ export class AddProductComponent implements OnInit {
       },
       (err: any) => {
         // Handle error, maybe show an error message
+        this.toastr.error('Error fetching subcategories:','Error')
         console.error('Error fetching subcategories:', err);
       }
     );
@@ -94,6 +97,8 @@ export class AddProductComponent implements OnInit {
       (createdProduct: IProduct) => {
         // Handle success, maybe show a success message or redirect
         console.log('Product created:', createdProduct);
+        this.toastr.success('Product created successfully','success message');
+        
       },
       (err: any) => {
         // Handle error, maybe show an error message
