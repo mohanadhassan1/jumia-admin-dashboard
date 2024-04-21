@@ -9,7 +9,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatChipsModule } from '@angular/material/chips';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { CommonModule } from '@angular/common';
-
+import { ProductService } from '../../../services/product.service';
 
 @Component({
   selector: 'app-product-edit-dialog',
@@ -25,7 +25,9 @@ export class ProductEditDialogComponent {
   constructor(
     public dialogRef: MatDialogRef<ProductEditDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: { product: IProduct },
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private productService: ProductService
+
   ) {
     this.productForm = this.fb.group({
       name: [data.product.name, Validators.required],
@@ -46,7 +48,16 @@ export class ProductEditDialogComponent {
         ...this.data.product,
         ...this.productForm.value
       };
-      this.dialogRef.close(editedProduct);
+      // this.dialogRef.close(editedProduct);
+      this.productService.updateProduct(editedProduct).subscribe(
+        (updatedProduct: IProduct) => {
+          // Close the dialog and pass the updated product back to the parent component
+          this.dialogRef.close(updatedProduct);
+        },
+        (error) => {
+          console.error('Error updating product:', error);
+        }
+      );
     }
   }
 }

@@ -1,16 +1,16 @@
-<div class="container">
+<div class="container p-20 my-10">
 
     <mat-form-field>
         <mat-label>Filter</mat-label>
         <input matInput (keyup)="applyFilter($event)" placeholder="Ex. ium" #input>
     </mat-form-field>
 
-    <mat-chip-listbox aria-label="Product selection" (selectionChange)="onChipSelect($event)">
+    <!-- <mat-chip-listbox aria-label="Product selection" (selectionChange)="onChipSelect($event)">
         <mat-chip-option color="accent" [selected]="selectedChip === 'All'">All</mat-chip-option>
         @for (chip of chips; track $index) {
         <mat-chip-option [value]="chip">{{chip}}</mat-chip-option>
         }
-    </mat-chip-listbox>
+    </mat-chip-listbox> -->
 
     <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
 

@@ -37,7 +37,6 @@ export class ManageProductsComponent implements OnInit, AfterViewInit {
   constructor(private productService: ProductService, private dialog: MatDialog) { }
 
 
-
   ngOnInit() {
     this.loadProducts();
   }
@@ -49,7 +48,11 @@ export class ManageProductsComponent implements OnInit, AfterViewInit {
   loadProducts() {
     this.productService.getAllProducts().subscribe(
       (products: IProduct[]) => {
-        this.dataSource.data = products;
+        
+        const reversedProducts = products.reverse();
+        this.dataSource.data = reversedProducts;
+
+        // this.dataSource.data = products;
       },
       (error) => {
         console.error('Error fetching products: ', error);

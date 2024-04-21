@@ -3,8 +3,18 @@
   font-size: 24px;
   font-weight: bold;
   color: #333; 
+  padding: 0.5rem;
 }
 
+.editTitle {
+  font-size: 24px;
+  font-weight: bold;
+  color: #333; 
+  padding: 0.5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 .mat-dialog-content {
   margin-top: 20px;
   padding: 50px;
@@ -12,6 +22,9 @@
 
 mat-form-field {
   width: 100%;
+  // padding: 1%;
+  padding-left: 1rem;
+  padding-right: 1rem;
   // margin-bottom: 20px;
 }
 
@@ -26,8 +39,25 @@ textarea.mat-input {
   margin-top: 20px;
 }
 
-button.mat-button {
+mat-button {
   margin-right: 10px;
+  padding-left: 1rem !important;
+  padding-right: 1rem;
+}
+
+.cancelBtn {
+  background-color: tomato;
+  padding: 0.5rem !important;
+  border-radius: 5px;
+  color: white;
+  margin: 0.5rem;
+}
+.saveBtn {
+  background-color: blue;
+  padding: 0.5rem !important;
+  border-radius: 5px;
+  color: white;
+  margin: 0.5rem;
 }
 
 button.mat-button[color="primary"] {
