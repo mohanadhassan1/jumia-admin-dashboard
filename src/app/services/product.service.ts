@@ -21,6 +21,13 @@ export class ProductService {
     return this.http.get<IProduct[]>(this.apiUrl);
   }
 
+  uploadImage(vals: any): Observable<any> {
+    let data = vals;
+    return this.http.post(
+      'https://api.cloudinary.com/v1_1/dfig4pnef/image/upload',
+      data
+    );
+  }
   getProductById(id: string): Observable<IProduct> {
     const url = `${this.apiUrl}/${id}`;
     return this.http.get<IProduct>(url);
