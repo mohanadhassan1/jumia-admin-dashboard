@@ -44,20 +44,23 @@ export class ProductEditDialogComponent {
 
   onSave(): void {
     if (this.productForm.valid) {
-      const editedProduct: IProduct = {
-        ...this.data.product,
-        ...this.productForm.value
-      };
-      // this.dialogRef.close(editedProduct);
+      const editedProduct: IProduct = { _id: this.data.product._id ,...this.productForm.value};
+      
+      console.log(editedProduct);
+
+      this.dialogRef.close(editedProduct);
       this.productService.updateProduct(editedProduct).subscribe(
         (updatedProduct: IProduct) => {
-          // Close the dialog and pass the updated product back to the parent component
+          console.log('Product updated successfully:', updatedProduct);
+
           this.dialogRef.close(updatedProduct);
         },
         (error) => {
           console.error('Error updating product:', error);
         }
       );
+
+
     }
   }
 }

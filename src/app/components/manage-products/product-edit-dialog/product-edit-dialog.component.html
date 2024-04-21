@@ -21,9 +21,9 @@
             <mat-label>Description</mat-label>
             <textarea matInput placeholder="Description" formControlName="description"></textarea>
         </mat-form-field>
+        <div mat-dialog-actions>
+            <button class="cancelBtn" mat-button (click)="onCancel()">Cancel</button>
+            <button class="saveBtn" mat-button color="primary" type="submit" [disabled]="!productForm.valid">Save</button>
+        </div>
     </form>
-</div>
-<div mat-dialog-actions>
-    <button class="cancelBtn" mat-button (click)="onCancel()">Cancel</button>
-    <button class="saveBtn" mat-button color="primary" [disabled]="!productForm.valid" (click)="onSave()">Save</button>
 </div>
