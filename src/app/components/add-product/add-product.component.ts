@@ -106,6 +106,13 @@ export class AddProductComponent implements OnInit {
         (createdProduct: IProduct) => {
           console.log('Product created:', createdProduct);
           this.toastr.success('Product created successfully', 'Success');
+
+          // Reset the form after successfully creating the product
+          this.addProductForm.reset();
+          // Clear imageUrls array
+          this.imageUrls = [];
+          // Clear files array
+          this.files = [];
         },
         (err: any) => {
           console.error('Error creating product:', err);
@@ -114,13 +121,13 @@ export class AddProductComponent implements OnInit {
     }
   }
 
-  getVendorIdFromToken(): string {
+  getVendorIdFromToken(): any {
     const token = localStorage.getItem('token');
     if (!token) {
       console.error('Token not found in localStorage');
-      return '';
+      return null;
     }
     const decodedToken: any = jwtDecode(token);
-    return decodedToken.id;
+    return decodedToken;
   }
 }
