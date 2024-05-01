@@ -79,6 +79,8 @@ export class AddProductComponent implements OnInit {
 
   submitForm() {
     console.log('Form values:', this.addProductForm.value);
+    // this.getVendorIdFromToken();
+    // console.log('vendor id:', this.getVendorIdFromToken().id);
 
     this.uploadImagesSequentially(0);
   }
@@ -97,7 +99,7 @@ export class AddProductComponent implements OnInit {
       });
     } else {
       const productData = {
-        vendor_id: this.getVendorIdFromToken(),
+        vendor_id: this.getVendorIdFromToken().id,
         ...this.addProductForm.value,
         images: this.imageUrls,
       };
